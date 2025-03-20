@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import '../widgets/bottom_nav_bar.dart';
+import '../widgets/bottom_nav_bar.dart'; // Ensure correct relative path
 import 'edit_profile_screen.dart';
 import 'change_password_screen.dart';
 import 'notifications_screen.dart';
 import 'privacy_security_screen.dart';
-import 'pet_preferences_screen.dart'; // Import Pet Preferences
-import 'order_payments_screen.dart'; // Import Order & Payments
+import 'pet_preferences_screen.dart';
+import 'order_payments_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -30,45 +30,72 @@ class SettingsScreen extends StatelessWidget {
             "Lucas Scott",
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-          const Text(
-            "@lucasscott3",
-            style: TextStyle(color: Colors.grey),
-          ),
+          const Text("@lucasscott3", style: TextStyle(color: Colors.grey)),
           const SizedBox(height: 20),
           Expanded(
             child: ListView(
               children: [
                 _buildSettingsOption(
-                    context, "Edit Profile", EditProfileScreen()),
+                  context,
+                  "Edit Profile",
+                  EditProfileScreen(),
+                ),
                 _buildSettingsOption(
-                    context, "Change Password", ChangePasswordScreen()),
-                _buildSettingsOption(context, "Pet Preferences",
-                    PetPreferencesScreen()), // Added Pet Preferences
-                _buildSettingsOption(context, "Order & Payments",
-                    OrderPaymentsScreen()), // Added Order & Payments
+                  context,
+                  "Change Password",
+                  ChangePasswordScreen(),
+                ),
                 _buildSettingsOption(
-                    context, "Notifications", NotificationsScreen()),
+                  context,
+                  "Pet Preferences",
+                  PetPreferencesScreen(),
+                ), // Added Pet Preferences
+                _buildSettingsOption(
+                  context,
+                  "Order & Payments",
+                  OrderPaymentsScreen(),
+                ), // Added Order & Payments
+                _buildSettingsOption(
+                  context,
+                  "Notifications",
+                  NotificationsScreen(),
+                ),
 
                 _buildSettingsOption(
-                    context, "Privacy & Security", PrivacySecurityScreen()),
+                  context,
+                  "Privacy & Security",
+                  PrivacySecurityScreen(),
+                ),
               ],
             ),
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: 0, // Set the initial selected index
+        onTap: (index) {
+          // Handle tab change
+        },
+        // ignore: avoid_types_as_parameter_names
+        onTabChange: (int) {},
+      ),
     );
   }
 
   Widget _buildSettingsOption(
-      BuildContext context, String title, Widget? destination) {
+    BuildContext context,
+    String title,
+    Widget? destination,
+  ) {
     return ListTile(
       title: Text(title),
       trailing: Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
       onTap: () {
         if (destination != null) {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => destination));
+            context,
+            MaterialPageRoute(builder: (context) => destination),
+          );
         }
       },
     );

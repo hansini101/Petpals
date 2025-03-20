@@ -35,8 +35,10 @@ class _PrivacySecurityScreenState extends State<PrivacySecurityScreen> {
           children: [
             // Section 1: Data Collection
             ListTile(
-              title: const Text("1. Types of data we collect",
-                  style: TextStyle(fontWeight: FontWeight.bold)),
+              title: const Text(
+                "1. Types of data we collect",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               trailing: Icon(expanded1 ? Icons.expand_less : Icons.expand_more),
               onTap: () {
                 setState(() {
@@ -55,8 +57,10 @@ class _PrivacySecurityScreenState extends State<PrivacySecurityScreen> {
 
             // Section 2: Use of Data
             ListTile(
-              title: const Text("2. Use of your personal data",
-                  style: TextStyle(fontWeight: FontWeight.bold)),
+              title: const Text(
+                "2. Use of your personal data",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               trailing: Icon(expanded2 ? Icons.expand_less : Icons.expand_more),
               onTap: () {
                 setState(() {
@@ -79,14 +83,17 @@ class _PrivacySecurityScreenState extends State<PrivacySecurityScreen> {
             SwitchListTile(
               title: const Text("Enable Data Collection"),
               subtitle: const Text(
-                  "Allow PetPal to collect data for better services."),
+                "Allow PetPal to collect data for better services.",
+              ),
               value: dataCollectionEnabled,
               onChanged: (value) {
                 setState(() {
                   dataCollectionEnabled = value;
-                  _showSnackBar(value
-                      ? "Data collection enabled"
-                      : "Data collection disabled");
+                  _showSnackBar(
+                    value
+                        ? "Data collection enabled"
+                        : "Data collection disabled",
+                  );
                 });
               },
             ),
@@ -100,7 +107,8 @@ class _PrivacySecurityScreenState extends State<PrivacySecurityScreen> {
                 setState(() {
                   adTrackingEnabled = value;
                   _showSnackBar(
-                      value ? "Ad tracking enabled" : "Ad tracking disabled");
+                    value ? "Ad tracking enabled" : "Ad tracking disabled",
+                  );
                 });
               },
             ),
@@ -120,7 +128,8 @@ class _PrivacySecurityScreenState extends State<PrivacySecurityScreen> {
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFFB89C5A)),
+                    backgroundColor: Color(0xFFB89C5A),
+                  ),
                   onPressed: () {
                     _showSnackBar("Privacy settings accepted");
                   },
@@ -131,7 +140,13 @@ class _PrivacySecurityScreenState extends State<PrivacySecurityScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: 0,
+        onTabChange: (index) {
+          // Handle tab change
+        },
+        onTap: (index) {},
+      ),
     );
   }
 }

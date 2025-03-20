@@ -23,15 +23,22 @@ class EditProfileScreen extends StatelessWidget {
             _buildTextField("Bio"),
             SizedBox(height: 20),
             ElevatedButton(
-              style:
-                  ElevatedButton.styleFrom(backgroundColor: Color(0xFFB89C5A)),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFFB89C5A),
+              ),
               onPressed: () {},
               child: Text("Save"),
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: 0,
+        onTabChange: (index) {
+          // Handle tab change
+        },
+        onTap: (index) {},
+      ),
     );
   }
 
@@ -39,8 +46,10 @@ class EditProfileScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: TextField(
-        decoration:
-            InputDecoration(labelText: label, border: OutlineInputBorder()),
+        decoration: InputDecoration(
+          labelText: label,
+          border: OutlineInputBorder(),
+        ),
       ),
     );
   }

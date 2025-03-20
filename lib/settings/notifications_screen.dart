@@ -24,27 +24,27 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       {
         "title": "New Message",
         "description": "You received a new message!",
-        "time": "Just now"
+        "time": "Just now",
       },
       {
         "title": "App Update",
         "description": "A new version is available!",
-        "time": "2 min ago"
+        "time": "2 min ago",
       },
       {
         "title": "Friend Request",
         "description": "John Doe sent you a request.",
-        "time": "5 min ago"
+        "time": "5 min ago",
       },
       {
         "title": "Reminder",
         "description": "Your pet’s vet appointment is today!",
-        "time": "1 hour ago"
+        "time": "1 hour ago",
       },
       {
         "title": "Offer Alert",
         "description": "50% off on pet food! Hurry up!",
-        "time": "3 hours ago"
+        "time": "3 hours ago",
       },
     ];
 
@@ -76,29 +76,38 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           ),
         ],
       ),
-      body: notifications.isEmpty
-          ? const Center(
-              child: Text(
-                "No notifications yet",
-                style: TextStyle(fontSize: 16, color: Colors.grey),
+      body:
+          notifications.isEmpty
+              ? const Center(
+                child: Text(
+                  "No notifications yet",
+                  style: TextStyle(fontSize: 16, color: Colors.grey),
+                ),
+              )
+              : ListView.builder(
+                itemCount: notifications.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: const Icon(
+                      Icons.notifications,
+                      color: Color(0xFFB89C5A),
+                    ),
+                    title: Text(notifications[index]["title"]!),
+                    subtitle: Text(notifications[index]["description"]!),
+                    trailing: Text(notifications[index]["time"]!),
+                    onTap: () {
+                      // Handle notification tap (e.g., navigate to details)
+                    },
+                  );
+                },
               ),
-            )
-          : ListView.builder(
-              itemCount: notifications.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  leading:
-                      const Icon(Icons.notifications, color: Color(0xFFB89C5A)),
-                  title: Text(notifications[index]["title"]!),
-                  subtitle: Text(notifications[index]["description"]!),
-                  trailing: Text(notifications[index]["time"]!),
-                  onTap: () {
-                    // Handle notification tap (e.g., navigate to details)
-                  },
-                );
-              },
-            ),
-      bottomNavigationBar: BottomNavBar(),
+      bottomNavigationBar: BottomNavBar(
+        selectedIndex: 0,
+        onTabChange: (index) {
+          // Handle tab change
+        },
+        onTap: (index) {},
+      ),
     );
   }
 }
