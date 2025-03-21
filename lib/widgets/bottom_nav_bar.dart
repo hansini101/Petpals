@@ -3,9 +3,8 @@ import 'package:petpals/settings/settings_screen.dart';
 import 'package:petpals/home.dart';
 import 'package:petpals/pet_care.dart';
 import 'package:petpals/pet_shop.dart';
-// Ensure this import is correct
 
-class BottomNavBar extends StatelessWidget {
+class BottomNavBar extends StatefulWidget {
   final int selectedIndex;
   final Function(int) onTabChange;
 
@@ -16,10 +15,20 @@ class BottomNavBar extends StatelessWidget {
   });
 
   @override
+  // ignore: library_private_types_in_public_api
+  _BottomNavBarState createState() => _BottomNavBarState();
+}
+
+class _BottomNavBarState extends State<BottomNavBar> {
+  @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      currentIndex: selectedIndex,
-      onTap: onTabChange,
+      currentIndex: widget.selectedIndex,
+      onTap: widget.onTabChange,
+      backgroundColor: const Color(0xFFC4B177), // Brown color
+      selectedItemColor: Colors.white, // Selected item color
+      unselectedItemColor: Colors.white70, // Unselected item color
+      type: BottomNavigationBarType.fixed, // Ensures all labels are visible
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         BottomNavigationBarItem(icon: Icon(Icons.pets), label: 'Pet Care'),
@@ -47,26 +56,17 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
+  final List<Widget> _screens = const [
+    HomePage(),
+    PetCarePage(),
+    PetShopPage(),
+    SettingsScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
-    Widget screen = const HomePage();
-    switch (_selectedIndex) {
-      case 0:
-        screen = const HomePage();
-        break;
-      case 1:
-        screen = const PetCarePage();
-        break;
-      case 2:
-        screen = const PetShopPage();
-        break;
-      case 3:
-        screen = const SettingsScreen();
-        break;
-    }
-
     return Scaffold(
-      body: screen,
+      body: _screens[_selectedIndex], // Directly access the selected page
       bottomNavigationBar: BottomNavBar(
         selectedIndex: _selectedIndex,
         onTabChange: _onTabChange,
