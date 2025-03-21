@@ -35,7 +35,7 @@ class PetCarePage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavBar(
-        selectedIndex: 0,
+        selectedIndex: 1,
         onTabChange: (index) {
           // Handle tab change
         },

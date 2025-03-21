@@ -72,7 +72,7 @@ class SettingsScreen extends StatelessWidget {
         ],
       ),
       bottomNavigationBar: BottomNavBar(
-        selectedIndex: 0, // Set the initial selected index
+        selectedIndex: 3, // Set the initial selected index
         onTap: (index) {
           // Handle tab change
         },
